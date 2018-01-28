@@ -12,14 +12,15 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
-Plugin 'altercation/vim-colors-solarized'	" solarized colorscheme
-Plugin 'tmhedberg/SimpylFold'			    " code folding
-Plugin 'vim-scripts/indentpython.vim'		" TAB = 4 whitespaces
-Plugin 'Valloric/YouCompleteMe'			    " auto-completion
-Plugin 'scrooloose/syntastic'			    " syntax check
-Plugin 'nvie/vim-flake8'			        " PEP8 check
+Plugin 'altercation/vim-colors-solarized'   " solarized colorscheme
+Plugin 'tmhedberg/SimpylFold'		    " code folding
+Plugin 'vim-scripts/indentpython.vim'       " TAB = 4 whitespaces
+Plugin 'Valloric/YouCompleteMe'		    " auto-completion
+Plugin 'scrooloose/syntastic'		    " syntax check
+Plugin 'nvie/vim-flake8'		    " PEP8 check
 Plugin 'vim-airline/vim-airline'            " airline
 Plugin 'vim-airline/vim-airline-themes'     " airline themes
+"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -85,9 +86,20 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " Line numbering
 set nu
 
+" Try to get airline characters displaying properly
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
 " Let airline use powerline fonts
 let g:airline_powerline_fonts = 1
 
 " Copy to system clipboard
 set clipboard=unnamedplus	" on Linux
 " set clipboard=unnamed		" on Windows
+
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+
+" Always show statusline
+" set laststatus=2
